@@ -1,0 +1,7 @@
+# green51_upper
+
+- Statement: `Green51.green_51.upper : ∃ α > 0, α ≤ 1 ∧ ∀ᶠ n in atTop, (guaranteedMaxCosetDim n α : ℝ) < n - √n` (category research solved, [Gr13])
+- Source: `FormalConjectures/GreensOpenProblems/51.lean:68` in the checkout. `maxCosetDim` (FormalConjecturesForMathlib/Combinatorics/Additive/Coset.lean), `𝔽`/`𝔽₂` (FormalConjecturesForMathlib/Data/ZMod/Fp.lean) and `guaranteedMaxCosetDim` are restated verbatim. The `@[category]` attribute is dropped and targeted imports are used.
+- Proof idea: take α = 1/100, r = ⌊√n⌋, k = ⌊(n − r − 1)/2⌋ and A = {x ∈ 𝔽₂ⁿ : wt(x) ≤ k}. Then A + A lies in {wt ≤ 2k}, and 2k + r + 1 ≤ n with √n < r + 1, so 2k < n − √n. Pivot lemma (induction on the dimension, over any field): every coset p + V contains a point with at least dim V nonzero coordinates. Pick a coordinate j where V is not identically zero, fix coordinate j to 1 with a multiple of u, and recurse on V ∩ {v_j = 0} over the remaining coordinates. So every coset inside A + A has dimension ≤ 2k. Density: complementing gives #{wt ≥ n−k} = #{wt ≤ k}, and the middle layers number n − 2k − 1 ≤ r + 1, each of size ≤ C(n,⌊n/2⌋). The bound C(n,⌊n/2⌋)²(3⌊n/2⌋+1) ≤ 4ⁿ comes from centralBinom(m)²(3m+1) ≤ 16^m by induction. Together these give 50·#mid ≤ 49·2ⁿ for n ≥ 100, hence #A ≥ 2ⁿ/100.
+- Axioms: `'Green51.green_51.upper' depends on axioms: [propext, Classical.choice, Quot.sound]`
+- Date: 2026-11-01

@@ -1,0 +1,6 @@
+# erdos835_odd
+
+- Statement: `Erdos835.johnson_chromaticNumber_odd` (for odd k > 2, k + 1 < χ(J(2k,k))), source `FormalConjectures/ErdosProblems/835.lean:133` (category research solved). `johnson` and the `J(·,·)` notation are restated locally from FormalConjecturesForMathlib Johnson.lean, with Mathlib-only imports.
+- Proof idea: write k = r + 2 with r odd. A colour class I of a proper colouring is a family of k-sets whose distinct members meet in ≤ r points. Fix an r-set T. Members of I containing T meet exactly in T, so their two-element remainders s ∖ T are pairwise disjoint inside the (k+2)-set Tᶜ. This gives 2·#{s ∈ I : T ⊆ s} ≤ k+2, and because k+2 is odd, ≤ k+1 (`OD.local_bound`). Double counting over the r-subsets (`OD.count`) gives 2|I|·C(k,r) ≤ C(2k,r)(k+1), i.e. |I| ≤ C(2k,k)/(k+2). Summing over k+1 colour classes (which partition all C(2k,k) vertices) and using the identity C(2k,k)·k(k−1) = C(2k,k−2)(k+1)(k+2) (from `Nat.choose_succ_right_eq` twice) gives (k+2) ≤ (k+1), a contradiction. This is the "derived design" parity argument: a Steiner system S(k−1,k,2k) cannot exist for odd k. No equality analysis is needed.
+- Axioms: `'Erdos835.johnson_chromaticNumber_odd' depends on axioms: [propext, Classical.choice, Quot.sound]`
+- Date: 2026-11-14

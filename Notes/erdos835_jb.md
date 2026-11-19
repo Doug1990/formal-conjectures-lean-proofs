@@ -1,0 +1,6 @@
+# erdos835_jb
+
+- Statement: `Erdos835.indepNum_johnson_le_johnsonBound` (α(J(n,k)) ≤ johnsonBound n 4 k), source `FormalConjectures/ErdosProblems/835.lean:102` (category research solved). The definitions `johnson`, the `J(·,·)` / `α(·)` notations and `johnsonBound` are restated locally from the checkout (FormalConjecturesForMathlib Johnson.lean / Clique.lean and 835.lean), with Mathlib-only imports.
+- Proof idea: an independent set of J(n,k) is a family of k-sets whose distinct members meet in at most k−2 points (constant-weight code with distance 4). `JB.main` proves Johnson's bound for such families over any finite type by induction on the size of the type: n = 0 or k = 0 or k = 1 gives at most one member. Otherwise, double counting Σ_{s∈C}|s| = Σ_i #{s ∈ C : i ∈ s} gives k|C| ≤ Σ_i #C_i. Each C_i maps injectively, via s ↦ s ∖ {i} viewed in the subtype {x // x ≠ i} (`Finset.subtype`), to a weight-(k−1) family with the same distance property on n−1 points. So k|C| ≤ n·johnsonBound(n−1,4,k−1), and the floor-division recursion follows from `Nat.le_div_iff_mul_le`. The graph statement then follows from `exists_isNIndepSet_indepNum` by mapping the subtype vertices to plain finsets.
+- Axioms: `'Erdos835.indepNum_johnson_le_johnsonBound' depends on axioms: [propext, Classical.choice, Quot.sound]`
+- Date: 2026-11-14
